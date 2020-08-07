@@ -81,8 +81,8 @@ class BlitsAndPottsRunner(threading.Thread):
             reformatCmd = ["/hh-suite/scripts/reformat.pl", a3mf, a2mf]
             subprocess.run(reformatCmd)
 
-            import plmDCA_asymmetric
-            plmDCA_asymmetric.initialize_runtime(["-nodisplay"])
-            p = plmDCA_asymmetric.initialize()
+            import plmDCA
+            plmDCA.initialize_runtime(["-nodisplay"])
+            p = plmDCA.initialize()
             p.plmDCA_asymmetric(a2mf, matf, multiprocessing.cpu_count(), 1, nargout=0)
             print("[%s] potts completed." % datetime.now())

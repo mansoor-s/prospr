@@ -6,8 +6,9 @@ RUN yum makecache -y && \
      yum install -y epel-release wget cmake vim octave && \
      yum makecache -y && \
      yum install -y conda sudo python36-pip && \
-     wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.9.0+-1.x86_64.rpm && \
-     yum localinstall -y ncbi-blast-2.9.0+-1.x86_64.rpm && \
+     yum -y install libXt && \
+     wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.1/ncbi-blast-2.10.1+-1.x86_64.rpm && \
+     yum localinstall -y ncbi-blast-2.10.1+-1.x86_64.rpm && \
      yum group install -y "Development Tools" && \
      git clone https://github.com/soedinglab/hh-suite.git && \
      mkdir -p hh-suite/build && \
