@@ -42,7 +42,7 @@ run_parser.add_argument('-n','--network', help='Which neural network do you want
 run_parser.add_argument('-s','--stride', help='stride over which crops of domain are predicted and averaged, integer 1-30.\nWARNING: Using a small stride may result in very long processing time! Suggested for quick prediction: 25', type=int, default=25)
 train_parser = subparsers.add_parser('build')
 train_parser.add_argument('domain', help='Looks for /data/<domain>/<domain>.fasta for a sequence and produces a pkl file ProSPr can use.  Please note, gaps in the sequence are denoted by a -, not an X')
-train_parser.add_argument('-j', '--threads', help='Number of threads for HHBlits/PSI-BLAST runs', default=8, type=int)
+train_parser.add_argument('-j', '--threads', help='Number of threads for HHBlits/PSI-BLAST runs', default=multiprocessing.cpu_count(), type=int)
 
  
 def main(args):

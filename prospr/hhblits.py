@@ -2,10 +2,12 @@ import threading
 import subprocess
 import sys
 import os
+from pathlib import Path
 from prospr import pconf
 import multiprocessing
 from datetime import datetime
 import requests
+
 
 def hhdb_dl_present():
      return os.path.exists(pconf.basedir + \
@@ -81,8 +83,7 @@ class BlitsAndPottsRunner(threading.Thread):
             reformatCmd = ["/hh-suite/scripts/reformat.pl", a3mf, a2mf]
             subprocess.run(reformatCmd)
 
-            import plmDCA
-            plmDCA.initialize_runtime(["-nodisplay"])
-            p = plmDCA.initialize()
-            p.plmDCA_asymmetric(a2mf, matf, multiprocessing.cpu_count(), 1, nargout=0)
+            plmDCAPath = Path("potts/run_plmDCA_asymmetric.sh")
+            plmDCACmd = [plmDCAPath, a2mf, matf, multiprocessing.cpu_count(), 1]
+            subprocess.run(plmDCACmd)
             print("[%s] potts completed." % datetime.now())
